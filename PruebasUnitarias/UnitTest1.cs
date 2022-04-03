@@ -5,24 +5,27 @@ namespace PruebasUnitarias
     [TestClass]
     public class DeckFunctionality
     {
-        [TestMethod]
-        public void CreatedDeck_Has_DefinedMaxCP()
+        [TestMethod] // # 1
+        public void CreatedDeck_Has_DefinedMaxCP() 
         {
             // Vector de prueba: 
             const int expectedDeckCP = 40;
 
             // - Crear un deck
+            Deck deck = new Deck();
 
             // - Comparar el CP máximo del Deck con el CP esperado
             // - Si el CP máximo del Deck es igual al CP esperado se pasa la prueba
+
+            Assert.AreEqual(deck.MaxCP, expectedDeckCP);
         }
     }
 
-    [TestClass]
+    [TestClass] 
     public class BaseCard
     {
-        [TestMethod]
-        public void AllCardTypes_Has_BasicChacteristics()
+        [TestMethod] // # 2
+        public void AllCardTypes_Has_BasicChacteristics() 
         {
             // Vector de prueba: 
             const string notExpectedName = "";
