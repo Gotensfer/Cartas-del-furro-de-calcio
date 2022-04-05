@@ -1,27 +1,31 @@
 ﻿using System;
 
-enum TargetAttribute
+namespace CartasDelFurroDeCalcio
 {
-	None,
-	AP,
-	RP,
-	ALL
-}
-
-enum EffectType
-{
-	None,
-	ReduceAP,
-	ReduceRP,
-	ReduceAll,
-	DestroyEquipment,
-	RestoreRP
-}
-
-public class SupportSkill : Card
-{
-	public SupportSkill()
+	public enum TargetAttribute
 	{
+		None,
+		AP,
+		RP,
+		ALL
+	}
 
+	public enum EffectType
+	{
+		None,
+		ReduceAP,
+		ReduceRP,
+		ReduceAll,
+		DestroyEquipment,
+		RestoreRP
+	}
+
+	public class SupportSkill : Card
+	{
+		public SupportSkill()
+		{
+
+		}
 	}
 }
+

@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class Deck
+namespace CartasDelFurroDeCalcio
 {
-	int maxCP;
-	int totalCP;
-    List<Card> cardsInDeck = new List<Card>();
-    int charactersOnDeck;
-
-
-    public int MaxCP { get => maxCP; }
-	public int TotalCP { get => totalCP; set => totalCP = value; }
-
-    public Deck()
+    public class Deck
     {
-        maxCP = 40;
+        int maxCP;
+        int totalCP;
+        List<Card> cardsInDeck = new List<Card>();
+        int charactersOnDeck;
 
 
+        public int MaxCP { get => maxCP; }
+        public int TotalCP { get => totalCP; set => totalCP = value; }
+
+        public Deck()
+        {
+            maxCP = 40;
+
+
+        }
     }
 }
+

@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CartasDelFurroDeCalcio;
 
 namespace PruebasUnitarias
 {
@@ -29,8 +30,10 @@ namespace PruebasUnitarias
         {
             // Vector de prueba: 
             const string notExpectedName = "";
-            const int notExpectedRarity = 0;
+            const Rarity notExpectedRarity = Rarity.None;
             const int notExpectedCP = 0;
+
+            
 
             // - Crear una carta de Character
             // - Crear una carta de Equip

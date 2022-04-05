@@ -1,10 +1,13 @@
 ﻿using System;
 
-public class Player
+namespace CartasDelFurroDeCalcio
 {
-	Deck deck;
-	public Player()
+	public class Player
 	{
-		deck = new Deck();
+		Deck deck;
+		public Player()
+		{
+			deck = new Deck();
+		}
 	}
 }

@@ -1,9 +1,13 @@
 ﻿using System;
 
-public class Equipment : Card
+namespace CartasDelFurroDeCalcio
 {
-	public Equipment()
+	public class Equipment : Card
 	{
+		public Equipment()
+		{
 
+		}
 	}
 }
+
