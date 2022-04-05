@@ -7,7 +7,7 @@ public class Character : Card
 	int ap, rp;
 	Equipment[] equip = new Equipment[3];
 
-	Affinity enumAffinity;
+	Affinity affinity;
 	int maxEquip = 3;
 	int actualEquip;
 	Random rand = new Random();
