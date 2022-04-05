@@ -12,7 +12,7 @@ namespace CartasDelFurroDeCalcio
 
 		Affinity affinity;
 		public Affinity Affinity { get => Affinity; }
-		public Equipment(string name, Rarity rarity, Affinity affinity, int cp, TargetAttribute targetAttribute, int effectPoints)
+		public Equipment(string name, Rarity rarity, int cp, Affinity affinity,TargetAttribute targetAttribute, int effectPoints)
 		{
 
 		}

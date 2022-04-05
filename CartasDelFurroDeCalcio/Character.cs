@@ -19,7 +19,7 @@ namespace CartasDelFurroDeCalcio
 		int maxEquip = 3;
 		int actualEquip;
 		Random rand = new Random();
-		public Character(string name,Rarity rarity,Affinity affinity, int cp, int ap, int rp)
+		public Character(string name,Rarity rarity, int cp, Affinity affinity, int ap, int rp)
 		{	
 			this.name = name;
 			this.rarity = rarity;
