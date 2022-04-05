@@ -1,5 +1,7 @@
 ﻿using System;
 
+
+
 enum Affinity
 {
     None,
@@ -8,8 +10,18 @@ enum Affinity
     Wizard,
     ALL
 }
+enum CardType
+{   
+    None,
+    Character,
+    Equipment,
+    SupportSkill,
+    ALL
+}
 
 public abstract class Card
 {
+    public String name;
+    public int cp;
 
 }
