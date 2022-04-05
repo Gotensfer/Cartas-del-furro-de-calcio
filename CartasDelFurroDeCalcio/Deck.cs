@@ -8,7 +8,11 @@ namespace CartasDelFurroDeCalcio
         int maxCP;
         int totalCP;
         List<Card> cardsInDeck = new List<Card>();
+
+        public List<Card> CardsInDeck { get => cardsInDeck; set => cardsInDeck=value; }
+
         int charactersOnDeck;
+        public int CharactersOnDeck { get => charactersOnDeck; set => charactersOnDeck=value; }
 
 
         public int MaxCP { get => maxCP; }

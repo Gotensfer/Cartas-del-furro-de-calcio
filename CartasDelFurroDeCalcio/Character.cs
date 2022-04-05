@@ -12,18 +12,24 @@ namespace CartasDelFurroDeCalcio
 		public int Rp { get => rp; set => rp = value; }
 
 		Affinity affinity;
-		public Affinity Affinity {  get=> Affinity; }
+		public Affinity Affinity { get => affinity; }
 
 
 		Equipment[] equip = new Equipment[3];
+		public Equipment[] Equip { get => equip; set => equip = value; }
+
 		int maxEquip = 3;
+		public int MaxEquip{ get => maxEquip;}
+
 		int actualEquip;
-		Random rand = new Random();
+		public int ActualEquip { get => actualEquip; }
+
 		public Character(string name,Rarity rarity, int cp, Affinity affinity, int ap, int rp)
 		{
 			this.name = name == ""? "MissingNo" : name;
 			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
 			this.cp = cp == 0 ? 1 : cp;
+			this.affinity = affinity == Affinity.None ? Affinity.Knight : affinity;
 			this.ap = ap==0? 1:cp;
 			this.rp = rp==0?1:cp;
 			InitEquip();
