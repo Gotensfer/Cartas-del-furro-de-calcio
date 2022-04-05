@@ -7,18 +7,25 @@ namespace CartasDelFurroDeCalcio
 		//ap=AttackPoints 
 		//rp=ResistPoints
 		int ap, rp;
-		Equipment[] equip = new Equipment[3];
+
+		public int Ap { get => ap; set => ap = value; }
+		public int Rp { get => rp; set => rp = value; }
 
 		Affinity affinity;
+		public Affinity Affinity {  get=> Affinity; }
+
+
+		Equipment[] equip = new Equipment[3];
 		int maxEquip = 3;
 		int actualEquip;
 		Random rand = new Random();
-		public Character()
-		{
-			name = "Jueputimus el hijueputiador";
-			cp = ap = rand.Next(1, 6);
-			ap = rand.Next(1, 6);
-			rp = rand.Next(1, 6);
+		public Character(string name,Rarity rarity,Affinity affinity, int cp, int ap, int rp)
+		{	
+			this.name = name;
+			this.rarity = rarity;
+			this.cp = cp;
+			this.ap = ap;
+			this.rp = rp;
 			InitEquip();
 
 		}

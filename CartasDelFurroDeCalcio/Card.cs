@@ -29,8 +29,13 @@ namespace CartasDelFurroDeCalcio
 
     public abstract class Card
     {
-        public String name;
-        public int cp;
+        protected string name;
+        protected int cp;
+        protected Rarity rarity;
+
+        public string Name { get => name; }
+        public int Cp { get => cp; }
+        public Rarity Rarity { get => rarity; }
     }
 }
 
