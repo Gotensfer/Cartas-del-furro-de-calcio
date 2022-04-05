@@ -20,12 +20,12 @@ namespace CartasDelFurroDeCalcio
 		int actualEquip;
 		Random rand = new Random();
 		public Character(string name,Rarity rarity, int cp, Affinity affinity, int ap, int rp)
-		{	
-			this.name = name;
-			this.rarity = rarity;
-			this.cp = cp;
-			this.ap = ap;
-			this.rp = rp;
+		{
+			this.name = name == ""? "MissingNo" : name;
+			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
+			this.cp = cp == 0 ? 1 : cp;
+			this.ap = ap==0? 1:cp;
+			this.rp = rp==0?1:cp;
 			InitEquip();
 
 		}

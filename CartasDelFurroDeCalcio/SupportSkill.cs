@@ -2,14 +2,6 @@
 
 namespace CartasDelFurroDeCalcio
 {
-	public enum TargetAttribute
-	{
-		None,
-		AP,
-		RP,
-		ALL
-	}
-
 	public enum EffectType
 	{
 		None,
@@ -29,11 +21,11 @@ namespace CartasDelFurroDeCalcio
 		public EffectType EffectType { get => effectType; }
 		public SupportSkill(string name,Rarity rarity, int cp,EffectType effectType, int effectPoints)
 		{
-			this.name = name;
-			this.rarity = rarity;
-			this.cp = cp;
-			this.effectType = effectType;
-			this.effectPoints = effectPoints;
+			this.name = name == "" ? "Garra de la muerte ignea" : name;
+			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
+			this.cp = cp == 0 ? 1 : cp;
+			this.effectType = effectType==EffectType.None?EffectType.ReduceAP:effectType;
+			this.effectPoints = effectPoints == 0 ? 1 : effectPoints;
 
 		}
 	}
