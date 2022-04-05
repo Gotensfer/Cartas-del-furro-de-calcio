@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using CartasDelFurroDeCalcio;
+using System.Linq;
 
 namespace PruebasUnitarias
 {
@@ -19,6 +20,44 @@ namespace PruebasUnitarias
             // - Si el CP máximo del Deck es igual al CP esperado se pasa la prueba
 
             Assert.AreEqual(deck.MaxCP, expectedDeckCP);
+        }
+
+        [TestMethod] // #3
+        public void DeckHasCardLimits()
+        {
+            // Vector de prueba
+            const int expectedDeck_CharacterCardCount = 5;
+            const int expectedDeck_EquipCardCount = 10;
+            const int expectedDeck_SupportSkillCardCont = 5;
+
+            // - Crear un deck 
+            Deck deck = new Deck();
+
+            // - Meter 7 cartas de tipo Character en el deck
+            for (int i = 0; i < 6; i++)
+            {
+                Character character = new Character("", Rarity.None, 0, Affinity.None, 0, 0);
+                deck.AddCard(character);
+            }
+
+            // - Meter 12 cartas de tipo Equipent en el deck
+            for (int i = 0; i < 11; i++)
+            {
+                Equipment equipment = new Equipment("", Rarity.None, 0, Affinity.None, TargetAttribute.None, 0);
+                deck.AddCard(equipment);
+            }
+
+            // - Meter 8 cartas de tipo SupportSkill en el deck
+            for (int i = 0; i < 7; i++)
+            {
+                SupportSkill supportSkill = new SupportSkill("", Rarity.None, 0, EffectType.None, 0);
+                deck.AddCard(supportSkill);
+            }
+
+            // - Comparar
+            Assert.AreEqual(expectedDeck_CharacterCardCount, deck.CardsInDeck.OfType<Character>().Count());
+            Assert.AreEqual(expectedDeck_EquipCardCount, deck.CardsInDeck.OfType<Equipment>().Count());
+            Assert.AreEqual(expectedDeck_SupportSkillCardCont, deck.CardsInDeck.OfType<SupportSkill>().Count());
         }
     }
 
@@ -68,6 +107,7 @@ namespace PruebasUnitarias
             Assert.AreNotEqual(supportSkill1.Name, notExpectedName);
             Assert.AreNotEqual(supportSkill1.Rarity, notExpectedRarity);
             Assert.AreNotEqual(supportSkill1.Cp, notExpectedCP);
+
             // - Si se satisfacen los vectores de prueba se pasa la prueba
         }
     }
