@@ -14,10 +14,8 @@ public class Deck
 
     public Deck()
     {
-        while (TotalCP >= 0)
-        {
-            cardsInDeck.Add(new Character());
-        }
+        maxCP = 40;
+
 
     }
 }
