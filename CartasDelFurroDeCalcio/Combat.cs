@@ -36,7 +36,8 @@ namespace CartasDelFurroDeCalcio
 				Console.WriteLine("Ganador jugador 2");
 				player1 = null;
 			}
-			else(player2.Deck.CardsInDeck.OfType<Character>().Count() == 0){
+			if(player2.Deck.CardsInDeck.OfType<Character>().Count() == 0)
+					{
 				Console.WriteLine("Ganador jugador 1");
 				player2 = null;
 			}
