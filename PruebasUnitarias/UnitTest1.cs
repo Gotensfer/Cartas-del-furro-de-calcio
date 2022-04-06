@@ -314,5 +314,71 @@ namespace PruebasUnitarias
             Assert.AreEqual(expectedETypeDE, cancelarleLaMateria.EffectType);
             Assert.AreEqual(expectedEffectPointsDE, cancelarleLaMateria.EffectPoints);
         }
+
+        [TestMethod] // #10
+        public void EffectType_Functionality()
+        {
+            SupportSkill spAP = new SupportSkill("spAP", Rarity.Common, 2, EffectType.ReduceAP, 2);
+            SupportSkill spRP = new SupportSkill("spRP", Rarity.Common, 2, EffectType.ReduceRP, 2);
+            SupportSkill spALL = new SupportSkill("spALL", Rarity.Common, 2, EffectType.ReduceAll, 2);
+            SupportSkill spResRP = new SupportSkill("spResRP", Rarity.Common, 2, EffectType.RestoreRP, 2);
+            SupportSkill spDE = new SupportSkill("spDE", Rarity.Common, 2, EffectType.DestroyEquipment, 0);
+
+            // Caso #1 Agregar SP de tipo ReduceAP
+            const int c1_expectedFinalAP = 2;
+            const int c1_expectedFinalRP = 4;
+
+            Character c1 = new Character("c1", Rarity.Common, 1, Affinity.Knight, 4, 4);
+
+            spAP.ApplyEffect(c1);
+            Assert.AreEqual(c1_expectedFinalAP, c1.Ap);
+            Assert.AreEqual(c1_expectedFinalRP, c1.Rp);
+
+            // Caso #2 Agregar SP de tipo ReduceRP
+            const int c2_expectedFinalAP = 4;
+            const int c2_expectedFinalRP = 2;
+
+            Character c2 = new Character("c2", Rarity.Common, 1, Affinity.Knight, 4, 4);
+
+            spRP.ApplyEffect(c2);
+            Assert.AreEqual(c2_expectedFinalAP, c2.Ap);
+            Assert.AreEqual(c2_expectedFinalRP, c2.Rp);
+
+            // Caso #3 Agregar SP de tipo ReduceALL
+            const int c3_expectedFinalAP = 2;
+            const int c3_expectedFinalRP = 2;
+
+            Character c3 = new Character("c3", Rarity.Common, 1, Affinity.Knight, 4, 4);
+
+            spALL.ApplyEffect(c3);
+            Assert.AreEqual(c3_expectedFinalAP, c3.Ap);
+            Assert.AreEqual(c3_expectedFinalRP, c3.Rp);
+
+            // Caso #4 Agregar SP de tipo RestoreRP
+            const int c4_expectedFinalAP = 4;
+            const int c4_expectedFinalRP = 4;
+
+            Character c4 = new Character("c4", Rarity.Common, 1, Affinity.Knight, 4, 4);
+
+            spRP.ApplyEffect(c4);
+            spResRP.ApplyEffect(c4);
+            Assert.AreEqual(c4_expectedFinalAP, c4.Ap);
+            Assert.AreEqual(c4_expectedFinalRP, c4.Rp);
+
+            // Caso #1 Agregar SP de tipo DestroyEquipment
+            const int c5_expectedFinalAP = 4;
+            const int c5_expectedFinalRP = 4;
+            const int c5_expectedEquipmentAmount = 0;
+
+            Character c5 = new Character("c5", Rarity.Common, 1, Affinity.Knight, 4, 4);
+            Equipment eq = new Equipment("ARandomEquip", Rarity.Common, 1, Affinity.Knight, TargetAttribute.RP, 3);
+
+            c5.AddEQuip(eq);
+            spAP.ApplyEffect(c5, "ARandomEquip");
+            Assert.AreEqual(c5_expectedFinalAP, c5.Ap);
+            Assert.AreEqual(c5_expectedFinalRP, c5.Rp);
+            Assert.AreEqual(c5_expectedEquipmentAmount, c5.Equip.Count);
+        }
     }
 }
+

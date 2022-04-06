@@ -38,11 +38,13 @@ namespace CartasDelFurroDeCalcio
                     break;
 
                 case TargetAttribute.RP:
-					character.Rp += effectPoints;
+					character.MaxRP += effectPoints;
+					character.Rp += effectPoints;			
                     break;
 
                 case TargetAttribute.ALL:
 					character.Ap += effectPoints;
+					character.MaxRP += effectPoints;
 					character.Rp += effectPoints;
 					break;
 
@@ -50,6 +52,29 @@ namespace CartasDelFurroDeCalcio
                     break;
             }
         }
+
+		public void RemoveEquipmentEffect(Character character)
+        {
+			switch (targetAttribute)
+			{
+				case TargetAttribute.AP:
+					character.Ap -= effectPoints;
+					break;
+
+				case TargetAttribute.RP:
+					character.Rp -= effectPoints;
+					character.MaxRP += effectPoints;
+					break;
+
+				case TargetAttribute.ALL:
+					character.Ap -= effectPoints;
+					character.Rp -= effectPoints;
+					break;
+
+				default:
+					break;
+			}
+		}
 	}
 }
 
