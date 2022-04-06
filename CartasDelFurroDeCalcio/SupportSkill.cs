@@ -15,7 +15,7 @@ namespace CartasDelFurroDeCalcio
 	public class SupportSkill : Card
 	{
 		int effectPoints;
-		public int Ap { get => effectPoints; set => effectPoints = value; }
+		public int EffectPoints { get => effectPoints; set => effectPoints = value; }
 
 		EffectType effectType;
 		public EffectType EffectType { get => effectType; }
@@ -23,9 +23,16 @@ namespace CartasDelFurroDeCalcio
 		{
 			this.name = name == "" ? "Garra de la muerte ignea" : name;
 			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
-			this.cp = cp == 0 ? 1 : cp;
+			this.cp = cp < 1 ? 1 : cp;
 			this.effectType = effectType==EffectType.None?EffectType.ReduceAP:effectType;
-			this.effectPoints = effectPoints == 0 ? 1 : effectPoints;
+			this.effectPoints = effectType == EffectType.DestroyEquipment ? 0 : effectPoints < 1 ? 1 : effectPoints;
+
+			/* if desType
+			 *  0
+			 * else if ep -> 0
+			 *  1
+			 *  else EP
+			 */
 
 		}
 	}

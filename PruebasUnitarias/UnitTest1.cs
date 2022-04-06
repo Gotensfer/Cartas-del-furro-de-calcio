@@ -181,9 +181,37 @@ namespace PruebasUnitarias
     public class SupportSkillCardFunctionality
     {
         [TestMethod]
-        public void test2()
+        public void CorrectInitialization() // # 6
         {
+            // Vector de prueba #1 - Caso de creación vacía
 
+            const EffectType notExpectedEType = EffectType.None;
+            const int notExpectedEffectPoints = 0;
+
+            SupportSkill estupidez = new SupportSkill("Titulo de presidencia", Rarity.Common, 1, EffectType.None, 0);
+
+            Assert.AreNotEqual(notExpectedEType, estupidez.EffectType);
+            Assert.AreNotEqual(notExpectedEffectPoints, estupidez.EffectPoints);
+
+            // Vector de prueba #2 - Caso de creación normal
+     
+            const EffectType expectedEType = EffectType.RestoreRP;
+            const int expectedEffectPoints = 5;
+
+            SupportSkill partiditaDeLol = new SupportSkill("Discord de Gio", Rarity.SuperRare, 3, EffectType.RestoreRP, 5);
+
+            Assert.AreEqual(expectedEType, partiditaDeLol.EffectType);
+            Assert.AreEqual(expectedEffectPoints, partiditaDeLol.EffectPoints);
+
+            // Vector de prueba #3 - Caso de creación de EffectType en DestroyEquipment
+            const EffectType expectedETypeDE = EffectType.DestroyEquipment;
+            const int expectedEffectPointsDE = 0;
+
+            //Crear un supportSkill de destroyEquipment con Effects points imposibles
+            SupportSkill cancelarleLaMateria = new SupportSkill("Cancelarle la materia", Rarity.Rare, 4, EffectType.DestroyEquipment, 2);
+
+            Assert.AreEqual(expectedETypeDE, cancelarleLaMateria.EffectType);
+            Assert.AreEqual(expectedEffectPointsDE, cancelarleLaMateria.EffectPoints);
         }
     }
 }

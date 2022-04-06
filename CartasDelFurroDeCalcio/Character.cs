@@ -28,10 +28,10 @@ namespace CartasDelFurroDeCalcio
 		{
 			this.name = name == ""? "MissingNo" : name;
 			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
-			this.cp = cp == 0 ? 1 : cp;
+			this.cp = cp < 1 ? 1 : cp;
 			this.affinity = affinity == Affinity.None ? Affinity.Knight : affinity;
-			this.ap = ap==0 ? 1 :ap;
-			this.rp = rp==0 ?1 :rp;
+			this.ap = ap < 1 ? 1 :ap;
+			this.rp = rp < 1 ? 1 :rp;
 			InitEquip();
 
 		}
