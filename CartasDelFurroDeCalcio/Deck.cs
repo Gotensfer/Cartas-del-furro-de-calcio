@@ -25,23 +25,26 @@ namespace CartasDelFurroDeCalcio
         public Deck()
         {
             maxCP = 40;
-            totalCP = 0;
+            totalCP = maxCP;
             cardsInDeck = new List<Card>();
         }
 
         public void AddCard(Card card)
         {
-            if (card is Character && cardsInDeck.OfType<Character>().Count() < maxCharactersInDeck)
+            if (card is Character && cardsInDeck.OfType<Character>().Count() < maxCharactersInDeck && card.Cp <= this.totalCP)
             {
                 cardsInDeck.Add(card);
+                this.totalCP -= card.Cp;
             }
-            if (card is Equipment && cardsInDeck.OfType<Equipment>().Count() < maxEquipmentsnDeck)
+            if (card is Equipment && cardsInDeck.OfType<Equipment>().Count() < maxEquipmentsnDeck && card.Cp <= this.totalCP)
             {
                 cardsInDeck.Add(card);
+                this.totalCP -= card.Cp;
             }
-            else if (card is SupportSkill && cardsInDeck.OfType<SupportSkill>().Count() < maxSupportSkillsInDeck)
+            else if (card is SupportSkill && cardsInDeck.OfType<SupportSkill>().Count() < maxSupportSkillsInDeck && card.Cp <= this.totalCP)
             {
                 cardsInDeck.Add(card);
+                this.totalCP -= card.Cp;
             }
         }
 

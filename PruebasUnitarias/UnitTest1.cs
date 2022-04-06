@@ -59,6 +59,29 @@ namespace PruebasUnitarias
             Assert.AreEqual(expectedDeck_EquipCardCount, deck.CardsInDeck.OfType<Equipment>().Count());
             Assert.AreEqual(expectedDeck_SupportSkillCardCont, deck.CardsInDeck.OfType<SupportSkill>().Count());
         }
+
+        [TestMethod] // #11
+        public void CanAddCardAsLongAsCPRemainingAllowsIt()
+        {
+            Character ch1 = new Character("Ch", Rarity.Common, 2, Affinity.Knight, 1, 1);
+
+            // Caso #1 La carta a agregar reducira el CP normalmente
+            const int c1_expectedDeckTotalCP = 38;
+
+            Deck deck1 = new Deck();
+            deck1.AddCard(ch1);
+
+            Assert.AreEqual(c1_expectedDeckTotalCP, deck1.TotalCP);
+
+            // Caso #2 La carta a agregar reduciria el CP por debajo de 0
+            const int c2_expectedDeckTotalCP = 1;
+
+            Deck deck2 = new Deck();
+            deck2.TotalCP = 1;
+            deck2.AddCard(ch1);
+
+            Assert.AreEqual(c2_expectedDeckTotalCP, deck2.TotalCP);   
+        }
     }
 
     [TestClass] 
