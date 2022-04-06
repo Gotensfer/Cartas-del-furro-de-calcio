@@ -186,6 +186,32 @@ namespace PruebasUnitarias
 
             Assert.AreEqual(expectedAmountOfEquipCards, character.Equip.Count);
         }
+
+        [TestMethod] // #12
+        public void FaceCharacterFunctionality()
+        {
+            // Caso #1 Ambos characters se enfrentan pero ninguno es destruido
+            const int ch1_expectedFinalRP = 1;
+            const int ch2_expectedFinalRP = 4;
+
+            Character ch1 = new Character("Ch1", Rarity.Common, 2, Affinity.Knight, 2, 4);
+            Character ch2 = new Character("Ch2", Rarity.Common, 2, Affinity.Knight, 3, 6);
+
+            Combat combat = new Combat();
+
+            combat.Fight(ch1, ch2);
+            Assert.AreEqual(ch1_expectedFinalRP, ch1.Rp);
+            Assert.AreEqual(ch2_expectedFinalRP, ch2.Rp);
+
+
+            //Caso #1 Ambos characters se enfrentan y uno es destruido
+            const string final_expectedResult = "Character 1 destruido";
+
+            string result = combat.Fight(ch1, ch2);
+
+            Assert.AreEqual(final_expectedResult, result);
+
+        }
     }
 
     [TestClass]
