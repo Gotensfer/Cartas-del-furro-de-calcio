@@ -30,8 +30,8 @@ namespace CartasDelFurroDeCalcio
 			this.rarity = rarity == Rarity.None ? Rarity.Common : rarity;
 			this.cp = cp == 0 ? 1 : cp;
 			this.affinity = affinity == Affinity.None ? Affinity.Knight : affinity;
-			this.ap = ap==0? 1:cp;
-			this.rp = rp==0?1:cp;
+			this.ap = ap==0 ? 1 :ap;
+			this.rp = rp==0 ?1 :rp;
 			InitEquip();
 
 		}

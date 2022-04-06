@@ -67,10 +67,15 @@ namespace PruebasUnitarias
         [TestMethod] // # 2
         public void AllCardTypes_Has_BasicChacteristics() 
         {
-            // Vector de prueba: 
+            // Vector de prueba #1 Caso de creación vacio
             const string notExpectedName = "";
             const Rarity notExpectedRarity = Rarity.None;
             const int notExpectedCP = 0;
+
+            // Vector de prueba #2 Caso de creación normal
+            const string expectedName = "RandomName";
+            const Rarity expectedRarity = Rarity.Rare;
+            const int expectedCP = 2;
 
             // - Crear cartas "vacias" de los 3 tipos
             Character character0 = new Character("", Rarity.None, 0, Affinity.None, 0, 0);
@@ -78,9 +83,9 @@ namespace PruebasUnitarias
             SupportSkill supportSkill0 = new SupportSkill("", Rarity.None, 0, EffectType.None, 0);
 
             // - Crear una carta "estandar" de los 3 tipos
-            Character character1 = new Character("Name0", Rarity.Common, 1, Affinity.Knight, 1, 1);
-            Equipment equipment1 = new Equipment("Name1", Rarity.Rare, 1, Affinity.Knight, TargetAttribute.AP, 1);
-            SupportSkill supportSkill1 = new SupportSkill("Name2", Rarity.SuperRare, 1, EffectType.ReduceRP, 1);
+            Character character1 = new Character("RandomName", Rarity.Rare, 2, Affinity.Knight, 1, 1);
+            Equipment equipment1 = new Equipment("RandomName", Rarity.Rare, 2, Affinity.Knight, TargetAttribute.AP, 1);
+            SupportSkill supportSkill1 = new SupportSkill("RandomName", Rarity.Rare, 2, EffectType.ReduceRP, 1);
 
             // - Comparar el name, rarity y cp de la carta una de las cartas estandar con los vectores de prueba
             Assert.AreNotEqual(character0.Name, notExpectedName);
@@ -96,39 +101,79 @@ namespace PruebasUnitarias
             Assert.AreNotEqual(supportSkill0.Cp, notExpectedCP);
 
             // - Comparar el name, rarity y cp de la carta una de las cartas estandar con los vectores de prueba
-            Assert.AreNotEqual(character1.Name, notExpectedName);
-            Assert.AreNotEqual(character1.Rarity, notExpectedRarity);
-            Assert.AreNotEqual(character1.Cp, notExpectedCP);
+            Assert.AreEqual(character1.Name, expectedName);
+            Assert.AreEqual(character1.Rarity, expectedRarity);
+            Assert.AreEqual(character1.Cp, expectedCP);
 
-            Assert.AreNotEqual(equipment1.Name, notExpectedName);
-            Assert.AreNotEqual(equipment1.Rarity, notExpectedRarity);
-            Assert.AreNotEqual(equipment1.Cp, notExpectedCP);
+            Assert.AreEqual(equipment1.Name, expectedName);
+            Assert.AreEqual(equipment1.Rarity, expectedRarity);
+            Assert.AreEqual(equipment1.Cp, expectedCP);
 
-            Assert.AreNotEqual(supportSkill1.Name, notExpectedName);
-            Assert.AreNotEqual(supportSkill1.Rarity, notExpectedRarity);
-            Assert.AreNotEqual(supportSkill1.Cp, notExpectedCP);
-
-            // - Si se satisfacen los vectores de prueba se pasa la prueba
+            Assert.AreEqual(supportSkill1.Name, expectedName);
+            Assert.AreEqual(supportSkill1.Rarity, expectedRarity);
+            Assert.AreEqual(supportSkill1.Cp, expectedCP);
         }
     }
 
     [TestClass]
     public class CharacterCardFunctionality
     {
-        [TestMethod]
-        public void TestMethod1()
+        [TestMethod] // # 4
+        public void CorrectInitialization()
         {
+            // Vector de prueba #1 - Caso de creación vacía
+            const Affinity notExpectedAffinity = Affinity.None;
+            const int notExpectedAP = 0;
+            const int notExpectedRP = 0;
 
+            // - Crear una carta de porky con los campos propios vacíos
+            Character duque = new Character("Duque", Rarity.UltraRare, 1, Affinity.None, 0, 0);
+
+            Assert.AreNotEqual(notExpectedAffinity, duque.Affinity);
+            Assert.AreNotEqual(notExpectedAP, duque.Ap);
+            Assert.AreNotEqual(notExpectedRP, duque.Rp);
+
+            // Vector de prueba #2 - Caso de creación normal
+            const Affinity expectedAffinity = Affinity.Wizard;
+            const int expectedAP = 5;
+            const int expectedRP = 8;
+
+            // - Crear una carta del todopoderoso Gio con los campos propios definidos
+            Character gio = new Character("Gio", Rarity.UltraRare, 6, Affinity.Wizard, 5, 8);
+
+            Assert.AreEqual(expectedAffinity, gio.Affinity);
+            Assert.AreEqual(expectedAP, gio.Ap);
+            Assert.AreEqual(expectedRP, gio.Rp);
         }
     }
 
     [TestClass]
     public class EquipCardFunctionality
     {
-        [TestMethod]
-        public void Test()
+        [TestMethod] // # 5
+        public void CorrectInitialization()
         {
+            // Vector de prueba #1 - Caso de creación vacía
+            const Affinity notExpectedAffinity = Affinity.None;
+            const TargetAttribute notExpectedTarget = TargetAttribute.None;
+            const int notExpectedEffectPoints = 0;
 
+            Equipment tituloDePresidencia = new Equipment("Titulo de presidencia", Rarity.SuperRare, 1, Affinity.None, TargetAttribute.None, 0);
+
+            Assert.AreNotEqual(notExpectedAffinity, tituloDePresidencia.Affinity);
+            Assert.AreNotEqual(notExpectedTarget, tituloDePresidencia.TargetAttribute);
+            Assert.AreNotEqual(notExpectedEffectPoints, tituloDePresidencia.EffectPoints);
+
+            // Vector de prueba #2 - Caso de creación normal
+            const Affinity expectedAffinity = Affinity.Wizard;
+            const TargetAttribute expectedTarget = TargetAttribute.ALL;
+            const int expectedEffectPoints = 4;
+
+            Equipment discordDeGio = new Equipment("Discord de Gio", Rarity.SuperRare, 2, Affinity.Wizard, TargetAttribute.ALL, 4);
+
+            Assert.AreEqual(expectedAffinity, discordDeGio.Affinity);
+            Assert.AreEqual(expectedTarget, discordDeGio.TargetAttribute);
+            Assert.AreEqual(expectedEffectPoints, discordDeGio.EffectPoints);
         }
     }
 
