@@ -7,8 +7,9 @@ namespace CartasDelFurroDeCalcio
         
         static void Main(string[] args)
         {
+            Console.WriteLine("Tu carta es");
             Gachapon gacha = new Gachapon();
-            Console.WriteLine("Hello World!");
+            
 
 
         }
