@@ -38,20 +38,6 @@ namespace CartasDelFurroDeCalcio
 				return "";
             }
 		}
-
-		public void Win(Player player1, Player player2)
-		{
-			if (player1.Deck.CardsInDeck.OfType<Character>().Count() == 0)
-			{
-				Console.WriteLine("Ganador jugador 2");
-				player1 = null;
-			}
-			if (player2.Deck.CardsInDeck.OfType<Character>().Count() == 0)
-			{
-				Console.WriteLine("Ganador jugador 1");
-				player2 = null;
-			}
-		}
 	}
 
 }
