@@ -7,7 +7,7 @@ namespace PruebasUnitarias
     [TestClass]
     public class DeckFunctionality
     {
-        [TestMethod] // # 1
+        [TestMethod] // #1
         public void CreatedDeck_Has_DefinedMaxCP() 
         {
             // Vector de prueba: 
@@ -64,7 +64,7 @@ namespace PruebasUnitarias
     [TestClass] 
     public class BaseCard
     {
-        [TestMethod] // # 2
+        [TestMethod] // #2
         public void AllCardTypes_Has_BasicChacteristics() 
         {
             // Vector de prueba #1 Caso de creación vacio
@@ -118,7 +118,7 @@ namespace PruebasUnitarias
     [TestClass]
     public class CharacterCardFunctionality
     {
-        [TestMethod] // # 4
+        [TestMethod] // #4
         public void CorrectInitialization()
         {
             // Vector de prueba #1 - Caso de creación vacía
@@ -145,12 +145,30 @@ namespace PruebasUnitarias
             Assert.AreEqual(expectedAP, gio.Ap);
             Assert.AreEqual(expectedRP, gio.Rp);
         }
+
+        [TestMethod]
+        public void EquipCardLimit() // #7
+        {
+            // Vector de prueba
+            const int expectedAmountOfEquipCards = 3;
+
+            Character character = new Character("RandomName", Rarity.Common, 1, Affinity.Knight, 1, 1);
+
+            //Intentar equipar 4 equipments
+            for (int i = 0; i < 4; i++)
+            {
+                Equipment equipment = new Equipment("RandomEquipment", Rarity.Common, 1, Affinity.Knight, TargetAttribute.AP, 1);
+                character.AddEQuip(equipment);
+            }
+
+            Assert.AreEqual(expectedAmountOfEquipCards, character.Equip.Count);
+        }
     }
 
     [TestClass]
     public class EquipCardFunctionality
     {
-        [TestMethod] // # 5
+        [TestMethod] // #5
         public void CorrectInitialization()
         {
             // Vector de prueba #1 - Caso de creación vacía
@@ -175,13 +193,96 @@ namespace PruebasUnitarias
             Assert.AreEqual(expectedTarget, discordDeGio.TargetAttribute);
             Assert.AreEqual(expectedEffectPoints, discordDeGio.EffectPoints);
         }
+
+        [TestMethod]
+        public void AffinityMatch_Functionality() // #8
+        {
+            // Equipamientos de todos los tipos
+            Equipment eqKn = new Equipment("eqKn", Rarity.Common, 1, Affinity.Knight, TargetAttribute.AP, 2);
+            Equipment eqWi = new Equipment("eqWi", Rarity.Common, 1, Affinity.Wizard, TargetAttribute.RP, 4);
+            Equipment eqUn = new Equipment("eqUn", Rarity.Common, 1, Affinity.Undead, TargetAttribute.ALL, 8);
+
+            //Caso #1 Añadir cada tipo de equipo a Knight
+            const int c1_expectedFinalAP = 4;
+            const int c1_expectedFinalRP = 5;
+
+            Character knight = new Character("Knight", Rarity.Common, 4, Affinity.Knight, 2, 5);
+            knight.AddEQuip(eqKn);
+            knight.AddEQuip(eqWi);
+            knight.AddEQuip(eqUn);
+
+            Assert.AreEqual(c1_expectedFinalAP, knight.Ap);
+            Assert.AreEqual(c1_expectedFinalRP, knight.Rp);
+
+            //Caso #2 Añadir cada tipo de equipo a Wizard
+            const int c2_expectedFinalAP = 6;
+            const int c2_expectedFinalRP = 6;
+
+            Character wizard = new Character("Wizard", Rarity.Common, 4, Affinity.Wizard, 6, 2);
+            wizard.AddEQuip(eqKn);
+            wizard.AddEQuip(eqWi);
+            wizard.AddEQuip(eqUn);
+
+
+            Assert.AreEqual(c2_expectedFinalAP, wizard.Ap);
+            Assert.AreEqual(c2_expectedFinalRP, wizard.Rp);
+
+            //Caso #3 Añadir cada tipo de equipo a Undead
+            const int c3_expectedFinalAP = 12;
+            const int c3_expectedFinalRP = 14;
+
+            Character undead = new Character("Undead", Rarity.Common, 4, Affinity.Undead, 4, 6);
+            undead.AddEQuip(eqKn);
+            undead.AddEQuip(eqWi);
+            undead.AddEQuip(eqUn);
+
+            Assert.AreEqual(c3_expectedFinalAP, undead.Ap);
+            Assert.AreEqual(c3_expectedFinalRP, undead.Rp);
+        }
+
+        [TestMethod] 
+        public void TargetAttribute_Functionality() // #9
+        {
+            // Caso #1 Añadir un equipment con target en AP
+            const int c1_expectedFinalAP = 3;
+            const int c1_expectedFinalRP = 4;
+
+            Character ch1 = new Character("Ch1", Rarity.Common, 4, Affinity.Knight, 1, 4);
+            Equipment eqAP = new Equipment("eqAP", Rarity.Common, 1, Affinity.Knight, TargetAttribute.AP, 2);
+            ch1.AddEQuip(eqAP);
+
+            Assert.AreEqual(c1_expectedFinalAP, ch1.Ap);
+            Assert.AreEqual(c1_expectedFinalRP, ch1.Rp);
+
+            // Caso #2 Añadir un equipment con target en RP
+            const int c2_expectedFinalAP = 4;
+            const int c2_expectedFinalRP = 8;
+
+            Character ch2 = new Character("Ch2", Rarity.Common, 4, Affinity.Knight, 4, 5);
+            Equipment eqRP = new Equipment("eqRP", Rarity.Common, 1, Affinity.Knight, TargetAttribute.RP, 3);
+            ch2.AddEQuip(eqRP);
+
+            Assert.AreEqual(c2_expectedFinalAP, ch2.Ap);
+            Assert.AreEqual(c2_expectedFinalRP, ch2.Rp);
+
+            // Caso #3 Añadir un equipment con target en ALL
+            const int c3_expectedFinalAP = 12;
+            const int c3_expectedFinalRP = 14;
+
+            Character ch3 = new Character("Ch3", Rarity.Common, 4, Affinity.Knight, 2, 4);
+            Equipment eqALL = new Equipment("eqALL", Rarity.Common, 1, Affinity.Knight, TargetAttribute.ALL, 10);
+            ch3.AddEQuip(eqALL);
+
+            Assert.AreEqual(c3_expectedFinalAP, ch3.Ap);
+            Assert.AreEqual(c3_expectedFinalRP, ch3.Rp);
+        }
     }
 
     [TestClass]
     public class SupportSkillCardFunctionality
     {
         [TestMethod]
-        public void CorrectInitialization() // # 6
+        public void CorrectInitialization() // #6
         {
             // Vector de prueba #1 - Caso de creación vacía
 

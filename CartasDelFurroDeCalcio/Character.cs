@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace CartasDelFurroDeCalcio
 {
@@ -15,8 +16,8 @@ namespace CartasDelFurroDeCalcio
 		public Affinity Affinity { get => affinity; }
 
 
-		Equipment[] equip = new Equipment[3];
-		public Equipment[] Equip { get => equip; set => equip = value; }
+		List<Equipment> equip;
+		public List<Equipment> Equip { get => equip; set => equip = value; }
 
 		int maxEquip = 3;
 		public int MaxEquip{ get => maxEquip;}
@@ -32,24 +33,18 @@ namespace CartasDelFurroDeCalcio
 			this.affinity = affinity == Affinity.None ? Affinity.Knight : affinity;
 			this.ap = ap < 1 ? 1 :ap;
 			this.rp = rp < 1 ? 1 :rp;
-			InitEquip();
+			this.equip = new List<Equipment>();
 
 		}
 
-		void AddEQuip()
+		public void AddEQuip(Equipment equipment)
 		{
-			while (actualEquip != maxEquip)
-			{
-				//Ni idea si esto se añade aquí
-			}
-		}
-
-		void InitEquip()
-		{
-			for (int i = 0; i < equip.Length; i++)
-			{
-				equip[i] = null;
-			}
+			if (equip.Count < 3 && equipment.Affinity == this.affinity)
+            {
+				equip.Add(equipment);
+				equipment.ApplyEquipmentEffect(this);
+            }
+			
 		}
 	}
 }

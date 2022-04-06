@@ -27,8 +27,29 @@ namespace CartasDelFurroDeCalcio
 			this.affinity = affinity == Affinity.None ? Affinity.Knight : affinity;
 			this.targetAttribute = targetAttribute == TargetAttribute.None ? TargetAttribute.AP : targetAttribute;
 			this.effectPoints = effectPoints < 1 ? 1 : effectPoints;
-
 		}
+
+		public void ApplyEquipmentEffect(Character character)
+        {
+            switch (targetAttribute)
+            {
+                case TargetAttribute.AP:
+					character.Ap += effectPoints;
+                    break;
+
+                case TargetAttribute.RP:
+					character.Rp += effectPoints;
+                    break;
+
+                case TargetAttribute.ALL:
+					character.Ap += effectPoints;
+					character.Rp += effectPoints;
+					break;
+
+                default:
+                    break;
+            }
+        }
 	}
 }
 

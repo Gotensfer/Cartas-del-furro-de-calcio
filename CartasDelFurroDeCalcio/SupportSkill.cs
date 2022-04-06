@@ -26,14 +26,6 @@ namespace CartasDelFurroDeCalcio
 			this.cp = cp < 1 ? 1 : cp;
 			this.effectType = effectType==EffectType.None?EffectType.ReduceAP:effectType;
 			this.effectPoints = effectType == EffectType.DestroyEquipment ? 0 : effectPoints < 1 ? 1 : effectPoints;
-
-			/* if desType
-			 *  0
-			 * else if ep -> 0
-			 *  1
-			 *  else EP
-			 */
-
 		}
 	}
 }
